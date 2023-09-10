@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
-const MY_KEY = "3047fa8a1afb45f59f78389b618f1af2"
+import { MovieList } from "components/MovieList/MovieList"
+export const MY_KEY = "3047fa8a1afb45f59f78389b618f1af2"
+
 export const HomePage = () => {
 const [movieList, setMovieList] = useState([])
     useEffect(() =>{
@@ -12,7 +14,7 @@ const [movieList, setMovieList] = useState([])
       })
       .then(movieData => {
         console.log(movieData.results)
-        setMovieList(d => movieData.results)
+        setMovieList(movieData.results)
         console.log(movieList)
       })
 },[])
@@ -20,7 +22,8 @@ const [movieList, setMovieList] = useState([])
     return(
        <>
        <h1>Trending today</h1>
-       <ul></ul>
+<MovieList movies={movieList}></MovieList>
+      
        </> 
     )
 }
