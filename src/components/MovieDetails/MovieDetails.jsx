@@ -3,13 +3,7 @@ import { useState, useEffect, useRef} from "react";
 import { MY_KEY } from "components/HomePage/HomePage";
 import { Link } from "react-router-dom";
 import css from './MovieDetails.module.css'
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDQ3ZmE4YTFhZmI0NWY1OWY3ODM4OWI2MThmMWFmMiIsInN1YiI6IjY0YjkwYjgxMTEzODZjMDBjYWY3ODExZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ODfEBkYfuHuxTVNxQqm-ilqGspVLcdU1r6qfZwFVxDQ'
-    }
-  };
+
 export const MovieDetails = () => {
 const [movieInfo, setMovieInfo] = useState([])
     const {id} = useParams();
@@ -30,7 +24,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${MY_KEY}`)
     setMovieInfo(d => movieData)
   })
  
-},[])
+},[id])
 
 
 

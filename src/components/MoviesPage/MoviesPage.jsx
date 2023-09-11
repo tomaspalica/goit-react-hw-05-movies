@@ -1,6 +1,7 @@
 import { MovieList } from "components/MovieList/MovieList";
 import { useState, useEffect } from "react"
-import { NavLink, useSearchParams} from "react-router-dom"
+import {  useSearchParams} from "react-router-dom"
+import { MY_KEY } from "components/HomePage/HomePage";
 export const MoviesPage = () => {
     
 

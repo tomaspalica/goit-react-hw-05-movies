@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { MovieList } from "components/MovieList/MovieList"
-import css from './HomePage.module.css'
+
 export const MY_KEY = "3047fa8a1afb45f59f78389b618f1af2"
 
 export const HomePage = () => {
@@ -15,7 +15,7 @@ const [movieList, setMovieList] = useState([])
       })
       .then(movieData => {
         console.log(movieData.results)
-        setMovieList(movieData.results)
+        setMovieList( d => movieData.results)
         console.log(movieList)
       })
 },[])

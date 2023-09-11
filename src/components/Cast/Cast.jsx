@@ -18,10 +18,10 @@ import { useEffect, useState } from "react";
         setMovieInfo(d => movieData)
       })
      
-    },[])
+    },[id])
 return(
    <ul>{movieInfo?.cast?.map(actor => {
-    return (<li key={actor.id}><img src={actor.profile_path ? `https://image.tmdb.org/t/p/w300${actor.profile_path}` : "No picture"}></img>
+    return (<li key={actor.id}><img alt={actor.name} src={actor.profile_path ? `https://image.tmdb.org/t/p/w300${actor.profile_path}` : "No picture"}></img>
     <p>Name: {actor.name}</p>
     <p>character: {actor.character}</p>
     </li>)
