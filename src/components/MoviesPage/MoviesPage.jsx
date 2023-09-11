@@ -1,10 +1,12 @@
+import { MovieList } from "components/MovieList/MovieList";
 import { useState, useEffect } from "react"
-import { MY_KEY } from "components/HomePage/HomePage"
-import { NavLink } from "react-router-dom"
+import { NavLink, useSearchParams} from "react-router-dom"
 export const MoviesPage = () => {
-    const [isSubmited, setIsSubmited] = useState(false)
-const [search, setSearch] = useState("")
+    
+
 const [movies, setMovies] = useState([])
+const [searchParams, setSearchParams] = useSearchParams();
+const query = searchParams.get("query");
 const options = {
     method: 'GET',
     headers: {
@@ -13,7 +15,12 @@ const options = {
     }
   };
     useEffect(() =>{
-fetch(`https://api.themoviedb.org/3/search/movie?query=${search}`, options)
+      if (query === "" || query === null) {
+        setMovies([])
+        return
+      };
+
+fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, options)
 .then(response => {
     if (!response.ok) {
       throw new Error(response.status);
@@ -21,37 +28,25 @@ fetch(`https://api.themoviedb.org/3/search/movie?query=${search}`, options)
     return response.json();
   })
   .then(movieData =>{
+    console.log(movieData.results)
 setMovies(movieData.results)
-
   })
-  setIsSubmited(false)
-    },[search])
+    },[query])
 
-// const handleInput = (e) =>{
-//     console.log(e.target.value)
-//     setSearch(e.target.value)
-// }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        setIsSubmited(true)
-        setSearch(e.target.children[0].value)
-      
+        setSearchParams({ query: e.currentTarget.elements.username.value})
+        e.currentTarget.reset()
     }
+
     return(
         <main>
         <form onSubmit={handleSubmit}>
-        <input ></input>
+        <input name="username" ></input>
         <button>search</button>
-        
-            <ul>{movies.map(el =>{
-                if(el.name){
-                  return (<li key={el.id}><NavLink to={`/movies/${el.id}`}>{el.name}</NavLink></li>)
-                } else {
-                  return (<li key={el.id}><NavLink to={`/movies/${el.id}`}>{el.title}</NavLink></li>)
-                }
-                
-               })}</ul>
+        <MovieList movies={movies}/>
+            
         
         </form>
 

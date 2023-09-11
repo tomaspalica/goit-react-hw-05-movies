@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom"
-import { useState, useEffect} from "react";
+import { useParams,  Outlet  , useLocation} from "react-router-dom"
+import { useState, useEffect, useRef} from "react";
 import { MY_KEY } from "components/HomePage/HomePage";
+import { Link } from "react-router-dom";
 const options = {
     method: 'GET',
     headers: {
@@ -11,6 +12,9 @@ const options = {
 export const MovieDetails = () => {
 const [movieInfo, setMovieInfo] = useState([])
     const {id} = useParams();
+    const location = useLocation();
+    
+    const backLink = useRef(location.state?.from || '/')
 useEffect(() => {
 fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${MY_KEY}`)
 .then(response => {
@@ -24,10 +28,34 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${MY_KEY}`)
     
     setMovieInfo(d => movieData)
   })
+ 
 },[])
+
+
+
 return (
-    <div>{id}</div>
-//   <h1>{movieInfo.name? `${movieInfo.name}` : `${movieInfo.title}` }</h1>
-  
+  <> 
+<main>
+  <Link to={backLink.current}><button> go back</button></Link>
+
+  <img src={movieInfo?.poster_path ? `https://image.tmdb.org/t/p/w300${movieInfo.poster_path}` : 'no Img'} alt="" />
+  <div>
+    <h2>{movieInfo.title} ({movieInfo?.release_date?.split("-")[0]})</h2>
+    <p>User Score: {Math.floor(movieInfo.vote_count / movieInfo.vote_average)}%</p>
+    <h3>Overview</h3>
+    <p>{movieInfo.overview}</p>
+    <h3>Genres</h3>
+    <ul>{movieInfo?.genres?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
+  </div>
+</main>
+<section>
+  <h3>Additional information</h3>
+<div><Link to={`/movies/${id}/cast`}>Cast</Link></div>
+<div><Link to={`/movies/${id}/reviews`}>Reviews</Link></div>
+</section>
+<section>
+<Outlet />
+</section>
+  </>
 )
 }
