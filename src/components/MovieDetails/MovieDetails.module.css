@@ -1,0 +1,14 @@
+.backButton{
+   display: block;
+    
+}
+.movieDescription{
+  display: flex;  
+  gap: 30px;
+}
+.genreList{
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    padding-left: 0px;
+}
