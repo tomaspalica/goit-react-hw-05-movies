@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[216],{216:function(e,t,r){r.r(t);var n=r(87),o=r(184);t.default=function(){return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)("div",{children:"the place where you are trying to go to dose not exist"}),(0,o.jsx)(n.OL,{to:"/",children:(0,o.jsx)("button",{children:"take me Home"})})]})}}}]);
+//# sourceMappingURL=216.0dc4ab5d.chunk.js.map
