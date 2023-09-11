@@ -14,9 +14,9 @@ const [movieList, setMovieList] = useState([])
         return response.json();
       })
       .then(movieData => {
-        console.log(movieData.results)
+        
         setMovieList( d => movieData.results)
-        console.log(movieList)
+       
       })
 },[])
 

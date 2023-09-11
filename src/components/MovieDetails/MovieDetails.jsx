@@ -19,7 +19,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${MY_KEY}`)
     return response.json();
   })
   .then(movieData =>{
-    console.log(movieData)
+   
     
     setMovieInfo(d => movieData)
   })

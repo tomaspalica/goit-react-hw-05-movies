@@ -8,20 +8,14 @@ export const MoviesPage = () => {
 const [movies, setMovies] = useState([])
 const [searchParams, setSearchParams] = useSearchParams();
 const query = searchParams.get("query");
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDQ3ZmE4YTFhZmI0NWY1OWY3ODM4OWI2MThmMWFmMiIsInN1YiI6IjY0YjkwYjgxMTEzODZjMDBjYWY3ODExZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ODfEBkYfuHuxTVNxQqm-ilqGspVLcdU1r6qfZwFVxDQ'
-    }
-  };
+
     useEffect(() =>{
       if (query === "" || query === null) {
         setMovies([])
         return
       };
 
-fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, options)
+fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${MY_KEY}`)
 .then(response => {
     if (!response.ok) {
       throw new Error(response.status);
@@ -29,7 +23,7 @@ fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, options)
     return response.json();
   })
   .then(movieData =>{
-    console.log(movieData.results)
+    
 setMovies(movieData.results)
   })
     },[query])

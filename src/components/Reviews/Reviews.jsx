@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
         return response.json();
       })
       .then(movieData =>{
-        console.log(movieData)
+        
         
         setMovieInfo(d => movieData.results)
       })
