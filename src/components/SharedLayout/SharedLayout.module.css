@@ -1,7 +1,4 @@
-.navigation{
-    display: flex;
-    gap: 10px;
-}
-.navigation NavLink{
-    
+.navigation {
+  display: flex;
+  gap: 10px;
 }
