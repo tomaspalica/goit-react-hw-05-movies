@@ -1,7 +1,6 @@
-import { MY_KEY } from 'components/HomePage/HomePage';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import { fetchMoviesReviews } from 'apiFetch/Api';
 const Reviews = () => {
   const { id } = useParams();
@@ -9,12 +8,13 @@ const Reviews = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchMoviesReviews();
-        setMovieInfo(response);
+        const response = await fetchMoviesReviews(id);
+        setMovieInfo(response.results);
       } catch (error) {
         console.log(error);
       }
     };
+    fetchData();
   }, [id]);
   return (
     <>

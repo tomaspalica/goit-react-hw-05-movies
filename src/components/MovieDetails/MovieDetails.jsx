@@ -1,6 +1,6 @@
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { MY_KEY } from 'components/HomePage/HomePage';
+
 import { Link } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { fetchMoviesById } from 'apiFetch/Api';

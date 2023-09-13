@@ -10,6 +10,7 @@ export const HomePage = () => {
       try {
         const movies = await fetchTrendingMovies();
         setMovieList(movies.results);
+        console.log(movies.results);
       } catch (error) {
         console.log(error);
       }
